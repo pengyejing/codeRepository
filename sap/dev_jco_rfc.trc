@@ -1,0 +1,24 @@
+
+**** Error file opened at 20160129 151143 China Standard Time Rel 3.0.9 (2012-07-19) [720.310]
+Error:  >Fri Jan 29 15:11:43,784<    RfcException: [null]
+    message: Parameter containing a user ID is missing: neither user nor user alias nor external ID nor SSO ticket nor X.509 certificate is specified
+    Return code: RFC_INVALID_PARAMETER(19)
+    error group: 101
+    key: RFC_ERROR_PROGRAM
+
+	at com.sap.conn.rfc.api.RfcOptions.checkLogonData(RfcOptions.java:164)
+	at com.sap.conn.rfc.api.RfcOptions.checkParameters(RfcOptions.java:356)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcClient.connect(MiddlewareJavaRfc.java:1340)
+	at com.sap.conn.jco.rt.ClientConnection.connect(ClientConnection.java:736)
+	at com.sap.conn.jco.rt.RepositoryConnection.connect(RepositoryConnection.java:52)
+	at com.sap.conn.jco.rt.PoolingFactory.init(PoolingFactory.java:107)
+	at com.sap.conn.jco.rt.ConnectionManager.createFactory(ConnectionManager.java:316)
+	at com.sap.conn.jco.rt.DefaultConnectionManager.createFactory(DefaultConnectionManager.java:46)
+	at com.sap.conn.jco.rt.ConnectionManager.getFactory(ConnectionManager.java:290)
+	at com.sap.conn.jco.rt.RfcDestination.getSystemID(RfcDestination.java:914)
+	at com.sap.conn.jco.rt.RepositoryManager.getRepository(RepositoryManager.java:31)
+	at com.sap.conn.jco.rt.RfcDestination.getRepository(RfcDestination.java:970)
+	at com.sap.conn.jco.rt.RfcDestination.getRepository(RfcDestination.java:33)
+	at Servlet.GetMessage.LoadBorrowMoneyBalance(GetMessage.java:34)
+	at Main.Action.main(Action.java:13)
+

@@ -1,0 +1,10 @@
+#for tests only !
+#Wed Dec 28 12:56:54 CST 2016
+jco.client.lang=zh
+jco.destination.peak_limit=10
+jco.client.client=180
+jco.client.passwd=ldpv5050
+jco.client.user=EAI_LDPV
+jco.client.sysnr=00
+jco.destination.pool_capacity=3
+jco.client.ashost=10.226.64.13

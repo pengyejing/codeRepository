@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:metadata="http://www.mulesoft.org/schema/mule/metadata" xmlns:mulexml="http://www.mulesoft.org/schema/mule/xml" xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns:quartz="http://www.mulesoft.org/schema/mule/quartz" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/quartz http://www.mulesoft.org/schema/mule/quartz/current/mule-quartz.xsd
+http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd
+http://www.mulesoft.org/schema/mule/xml http://www.mulesoft.org/schema/mule/xml/current/mule-xml.xsd" version="CE-3.7.0">
+    <flow name="sapFlow">
+        <quartz:inbound-endpoint jobName="Sap" repeatInterval="5000" responseTimeout="10000" doc:name="Quartz" repeatCount="2">
+            <quartz:event-generator-job/>
+        </quartz:inbound-endpoint>
+        <set-payload value="{&quot;RFC_NAME&quot;:&quot;ZWFDMM_VENDOR_EAIOUTPUT&quot;,&quot;ZENDDATE&quot;:&quot;9999-12-31&quot;, &quot;ZENDTIME&quot;:&quot;00:00:00&quot;, &quot;ZSTARTDATE&quot;:&quot;2014-03-28&quot;, &quot;ZSTARTTIME&quot;:&quot;11:12:05&quot;}" encoding="UTF-8" mimeType="application/json" doc:name="Set Payload(RFC_NAME and parameters)"/>
+        <flow-ref name="sapSub_Flow" doc:name="sapSub_Flow"/>
+        <custom-transformer  class="Main.GetSAPMessage" doc:name="Java" mimeType="application/json" encoding="UTF-8"/>
+        <logger message="&gt;&gt;&gt;&gt;  #[payload]" level="INFO" doc:name="Logger"/>
+    </flow>
+    <sub-flow name="sapSub_Flow">
+        <set-payload value="{&quot;RFC_NAME&quot;:&quot;ZRFC_MD_PC_EAI&quot;,&quot;I_BDATE&quot;:&quot;2015-12-11&quot;, &quot;I_BTIME&quot;:&quot;00:00:00&quot;, &quot;I_EDATE&quot;:&quot;&quot;, &quot;I_ETIME&quot;:&quot;&quot;,&quot;I_WERKS&quot;:&quot;8200&quot;}" doc:name="Set Payload(RFC_NAME and parameters)"/>
+    </sub-flow>
+</mule>
